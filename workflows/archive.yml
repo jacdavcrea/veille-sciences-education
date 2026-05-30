@@ -1,0 +1,52 @@
+name: Archiver la veille précédente
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 22 * * 0"  # dimanche 22h UTC
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Archiver la veille courante
+        run: |
+          if [ ! -f content/veille-courante.md ]; then
+            echo "Pas de veille courante à archiver."
+            exit 0
+          fi
+
+          DATE=$(grep -m1 "^date:" content/veille-courante.md | sed 's/date:[ ]*//' | tr -d '"' | xargs || echo "")
+          if [ -z "$DATE" ]; then
+            DATE=$(date +%Y-%m-%d)
+          fi
+
+          ARCHIVE_NAME="veille-${DATE}.md"
+
+          if [ -f "content/archives/${ARCHIVE_NAME}" ]; then
+            echo "Archive ${ARCHIVE_NAME} déjà présente."
+            exit 0
+          fi
+
+          mkdir -p content/archives
+          cp content/veille-courante.md "content/archives/${ARCHIVE_NAME}"
+          echo "Archivée : ${ARCHIVE_NAME}"
+
+      - name: Commit et push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/archives/
+          if git diff --staged --quiet; then
+            echo "Rien à committer."
+          else
+            git commit -m "Archivage automatique de la veille hebdomadaire"
+            git push
+          fi
