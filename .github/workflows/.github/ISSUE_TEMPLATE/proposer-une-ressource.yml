@@ -1,0 +1,61 @@
+name: Proposer une ressource
+description: Suggérer une ressource à intégrer dans la veille hebdomadaire
+title: "[Proposition] "
+labels: ["proposition-ressource"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci pour votre contribution. Ce formulaire permet de proposer une ressource
+        à intégrer dans la prochaine veille hebdomadaire.
+
+  - type: input
+    id: titre
+    attributes:
+      label: Titre de la ressource
+      placeholder: Titre exact tel qu'il apparaît à la source
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      placeholder: https://...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type de veille (cf. typologie du cours)
+      options:
+        - Veille institutionnelle
+        - Veille scientifique et technologique
+        - Veille réglementaire, normative, juridique
+        - Veille image, e-réputation
+        - Veille commerciale, financière, marketing
+        - Veille sectorielle, stratégique, environnementale
+        - À déterminer
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description et intérêt pour la veille
+      description: En 2-3 phrases, présentez la ressource et expliquez son intérêt pour le champ.
+    validations:
+      required: true
+
+  - type: textarea
+    id: concepts
+    attributes:
+      label: Concepts du glossaire mobilisés (facultatif)
+      description: Quels concepts du cours cette ressource éclaire-t-elle ?
+
+  - type: input
+    id: proposant
+    attributes:
+      label: Vous êtes (facultatif)
+      placeholder: Prénom Nom, statut ou rôle
