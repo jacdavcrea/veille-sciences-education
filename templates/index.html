@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ site_title }}</title>
+  <meta name="description" content="{{ site_subtitle }}">
+  <link rel="alternate" type="application/rss+xml" title="Flux RSS de la veille" href="feed.xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="masthead">
+    <div class="wrap">
+      <div class="masthead-top">
+        <p class="kicker">No. {{ semaine }} · Veille hebdomadaire</p>
+        {{ navigation }}
+      </div>
+      <h1 class="masthead-title">{{ site_title }}</h1>
+      <p class="masthead-sub">{{ site_subtitle }}</p>
+      <div class="rule"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="issue">
+      <header class="issue-header">
+        <time class="issue-date">{{ current_date }}</time>
+        <h2 class="issue-title">{{ current_titre }}</h2>
+      </header>
+
+      {{ dashboard }}
+
+      {{ sections }}
+    </article>
+
+    <aside class="archives-block">
+      <h3 class="section-title">Numéros précédents</h3>
+      {{ archives_short }}
+      <p class="more"><a href="archives/">Voir toutes les archives ({{ archive_count }}) →</a></p>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="method">
+        <strong>Méthode.</strong> Cette page est générée chaque lundi matin par une chaîne automatisée :
+        un agent de veille (Cowork) produit un rapport en markdown structuré selon la typologie du cours,
+        qu'une GitHub Action convertit en HTML et publie sur GitHub Pages.
+        Voir la <a href="methode.html">page Méthode</a> pour le détail.
+      </p>
+      <p class="meta">
+        Dernière génération : <time>{{ last_build }}</time> ·
+        <a href="feed.xml">Flux RSS</a> ·
+        <a href="apropos.html">À propos</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ titre }} — {{ site_title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="masthead masthead--compact">
+    <div class="wrap">
+      <div class="masthead-top">
+        <p class="kicker"><a href="../">← Veille courante</a></p>
+        {{ navigation }}
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="issue">
+      <header class="issue-header">
+        <time class="issue-date">{{ date }}</time>
+        <h2 class="issue-title">{{ titre }}</h2>
+      </header>
+
+      {{ dashboard }}
+
+      {{ sections }}
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="meta">
+        Archive · Dernière génération du site : <time>{{ last_build }}</time>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

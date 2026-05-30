@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archives — {{ site_title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+  <div class="grain"></div>
+
+  <header class="masthead masthead--compact">
+    <div class="wrap">
+      <div class="masthead-top">
+        <p class="kicker"><a href="../">← Veille courante</a></p>
+        {{ navigation }}
+      </div>
+      <h1 class="masthead-title">Archives</h1>
+      <p class="masthead-sub">L'ensemble des veilles hebdomadaires publiées depuis le début du dispositif.</p>
+      <div class="rule"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="archives-block archives-block--full">
+      {{ archive_list }}
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="meta">
+        Dernière génération : <time>{{ last_build }}</time>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
